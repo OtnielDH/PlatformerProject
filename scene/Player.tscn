@@ -7,6 +7,8 @@
 script/source = "extends CharacterBody2D
 
 
+#define the speed & jump velocity
+#modify this if want to change movement feel
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
@@ -25,12 +27,18 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	print(direction)
+	
+	# check the direction for flipping characters direction
+	# right is > 0
+	# left is <1
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	if direction < 0:
 		animated_sprite_2d.flip_h = true
 	
+	# if direction is 0 / player not moving play idle animation
+	# if direction is not zer / player moving play running animation
+	# TODO add jumping animation
 	if direction != 0:
 		animated_sprite_2d.play(\"running\")
 	else:
@@ -135,6 +143,7 @@ height = 24.0
 script = SubResource("GDScript_saxb0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_5tm1q")
 animation = &"running"
