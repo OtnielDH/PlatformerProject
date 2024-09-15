@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://iny5wyijbgjd"]
+
+[ext_resource type="Texture2D" uid="uid://baefet6m5hwij" path="res://assets/tileset/ForestTile.png" id="1_pmo0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdi05"]
+size = Vector2(48, 13)
+
+[node name="ForestPlatform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pmo0c")
+region_enabled = true
+region_rect = Rect2(80, 16, 48, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sdi05")
