@@ -13,7 +13,9 @@ func _process(delta: float) -> void:
 	# it will continously get player position
 	acquire_target()
 	# made the camera position change with lerp calculation
-	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 500))
+	#COMMMENT FOR NOW
+	#global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 500))
+	global_position = target_position
 
 
 # function to get player position from vector
