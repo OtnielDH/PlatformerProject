@@ -4,7 +4,7 @@ extends CharacterBody2D
 #define the speed & jump velocity
 #modify this if want to change movement feel
 const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -500.0
 const GRAVITY = 1000
 const FALL_GRAVITY = 1350
 
@@ -37,7 +37,6 @@ func _physics_process(delta: float) -> void:
 	# check the player is not in floor, and effect player w/ gravity
 	# if it on the floor & player dont have status of cayote time it not effected
 	if not is_on_floor() && (can_cayote_time == false):
-		print("not floor " + str(velocity.y))
 		velocity.y += process_gravity(velocity) * delta
 		
 
@@ -67,12 +66,17 @@ func _physics_process(delta: float) -> void:
 	
 	# if direction is 0 / player not moving play idle animation
 	# if direction is not zero / player moving play running animation
-	# TODO add jumping animation
-	if direction != 0:
+	# jumping and fall animation depend on the velocity
+	if direction != 0 && velocity.y == 0:
 		animated_sprite_2d.play("running")
 	else:
 		animated_sprite_2d.play("idle")
-				
+	if velocity.y < 0:
+		animated_sprite_2d.play("jump")
+	if velocity.y > 0:
+		animated_sprite_2d.play("fall")
+		print("current velocity = " +  str(velocity.y))
+		
 	#Input pushed to right/left, character will start move
 	if direction:
 		velocity.x = direction * SPEED
