@@ -6,12 +6,15 @@
 size = Vector2(48, 13)
 
 [node name="ForestPlatform" type="AnimatableBody2D"]
+position = Vector2(0, 0.0625)
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pmo0c")
+offset = Vector2(0, -1.5)
 region_enabled = true
 region_rect = Rect2(80, 16, 48, 13)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5625)
 shape = SubResource("RectangleShape2D_sdi05")

@@ -4,7 +4,7 @@ extends CharacterBody2D
 #define the speed & jump velocity
 #modify this if want to change movement feel
 const SPEED = 120.0
-const JUMP_VELOCITY = -500.0
+const JUMP_VELOCITY = -300.0
 const GRAVITY = 1000
 const FALL_GRAVITY = 1350
 
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	# check velocity is 1/3 max jump velocity, set point for more bigger fall velocity
 	if Input.is_action_just_released("ui_up") and velocity.y < JUMP_VELOCITY / 3:
 		# set velocity bigger to drag player down
-		print("is floor " + str(velocity.y))
+		#print("is floor " + str(velocity.y))
 		velocity.y = JUMP_VELOCITY / 3
 		
 	if Input.is_action_just_pressed("ui_up"): 
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("jump")
 	if velocity.y > 0:
 		animated_sprite_2d.play("fall")
-		print("current velocity = " +  str(velocity.y))
+		#print("current velocity = " +  str(velocity.y))
 		
 	#Input pushed to right/left, character will start move
 	if direction:
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		# turn the cayote on when this situation acheived
 		if !can_cayote_time:
-			print("Cayote time")
+			#print("Cayote time")
 			can_cayote_time = true
 			# start timer to reset cayote time status
 			cayote_timer.start()
@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 		# return the buffer to false again
 		# execute jump immidate
 		if can_buffer_jump:
-			print("Buffered Jump")
+			#print("Buffered Jump")
 			can_buffer_jump = false
 			jump()
 
@@ -113,7 +113,7 @@ func jump():
 	# check if charcater is grond 
 	# cayote time status true = player can jumpt again
 	if is_on_floor() || can_cayote_time:
-		print("Player Jumping")
+		#print("Player Jumping")
 		velocity.y = JUMP_VELOCITY
 		# after jump, reset the cayote status again
 		if can_cayote_time:
